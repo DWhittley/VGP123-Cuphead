@@ -61,14 +61,31 @@ public class PlayerController : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
 
+        if (curPlayingClip.Length > 0)
+        {
+            if (Input.GetButtonDown("Fire1") && curPlayingClip[0].clip.name != "Fire")
+                anim.SetTrigger("Fire");
+            else if (curPlayingClip[0].clip.name == "Fire")
+                rb.velocity = Vector2.zero;
+            else
+            {
+                Vector2 moveDirection = new Vector2(hInput * speed, rb.velocity.y);
+                rb.velocity = moveDirection;
+            }
+        }
+
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * jumpForce);
         }
 
-        Vector2 moveDirection = new Vector2(hInput * speed, rb.velocity.y);
-        rb.velocity = moveDirection;
+        if (!isGrounded && Input.GetButtonDown("Jump"))
+        {
+            anim.SetTrigger("JumpAttack");
+        }
+
+        
 
         anim.SetFloat("speed", Mathf.Abs(hInput));
         anim.SetBool("isGrounded", isGrounded);
