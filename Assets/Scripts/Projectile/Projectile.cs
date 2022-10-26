@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed;
+    
     public float lifetime;
 
-    
+    [HideInInspector]
+    public float speed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +19,5 @@ public class Projectile : MonoBehaviour
         GetComponent<Rigidbody>().velocity = new Vector2(speed, 0);
         Destroy(gameObject, lifetime);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }
