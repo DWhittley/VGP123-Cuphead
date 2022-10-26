@@ -18,7 +18,7 @@ public class Shoot : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
 
         if (projectileSpeed <= 0)
-            projectileSpeed = 7.0f;
+            projectileSpeed = 10.0f;
 
         if (!spawnPointLeft || !spawnPointRight || !projectilePrefab)
             Debug.Log("Please setup default values on: " + gameObject.name);

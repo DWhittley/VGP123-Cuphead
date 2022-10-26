@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("speed", Mathf.Abs(hInput));
         anim.SetBool("isGrounded", isGrounded);
 
-        //Check for flipped and create some sort of algorithm to keep your sprite flipped properly
+        //Check for flipped
 
         if (hInput != 0)
             sr.flipX = (hInput < 0);
