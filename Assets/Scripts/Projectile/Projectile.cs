@@ -21,11 +21,17 @@ public class Projectile : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
         Destroy(gameObject, lifetime);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
-            Destroy(gameOjbect);
-            Destroy(collision.gameObject); 
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "Wall")
+        {
+            Destroy(gameObject);
+        }
     }
 }
 

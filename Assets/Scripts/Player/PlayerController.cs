@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
 
 
     // variables
-    Coroutine jumpforceChange;
-    public int maxLives = 5;
+    Coroutine jumpForceChange;
+    public int maxLives = 3;
     private int _lives = 3;
     
     public int lives
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         get { return _lives; }
         set
         {
-            //if (lives < value)
+            //if (_lives < value)
                 // we lost a life - we should respawn
 
             _lives = value;
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
             if (_lives > maxLives)
                 _lives = maxLives;
 
-            //if (_lives < 0)
+            //if (_lives <= 0)
             //gameover code goes here
 
             Debug.Log("Lives have been set to: " + _lives.ToString());
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         if (jumpForceChange == null)
         {
-            jumpForceChange = StartCoroutine(JumpForceChange(JumpForceChange));
+            jumpForceChange = StartCoroutine(JumpForceChange());
         }
         else
         {
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
 
         jumpForce /= 2;
-        JumpForceChange = null;
+        jumpForceChange = null;
     }
 
     // Start is called before the first frame update
@@ -149,5 +149,14 @@ public class PlayerController : MonoBehaviour
         if (hInput != 0)
             sr.flipX = (hInput < 0);
 
+        if (isGrounded)
+            rb.gravityScale = 1;
+
     }
+
+    public void IncreaseGravity()
+    {
+        rb.gravityScale = 5;
+    }
+
 }

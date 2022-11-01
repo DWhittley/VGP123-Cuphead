@@ -16,22 +16,28 @@ public class pickups : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerController curPlayer = collision.gameObject.GetComponent<PlayerController>(); 
-
-        switch (currentPickup)
+        if (collision.gameObject.tag == "Player")
         {
-            case PickupType.Life:
-                curPlayer.lives++;
-                break;
-            case PickupType.Powerup:
-                curPlayer.StartJumpForceChange();
-                Debug.Log("Powerup was picked up");
-                break;  
-            case PickupType.Score:
-                Debug.Log("Score was picked up");
-                break;
+            PlayerController curPlayer = collision.gameObject.GetComponent<PlayerController>();
 
+            switch (currentPickup)
+            {
+                case PickupType.Life:
+                    curPlayer.lives++;
+                    break;
+                case PickupType.Powerup:
+                    curPlayer.StartJumpForceChange();
+                    Debug.Log("Powerup was picked up");
+                    break;
+                case PickupType.Score:
+                    Debug.Log("Score was picked up");
+                    break;
+
+            }
+
+            Destroy(gameObject);
         }
+        
     }
 
     // Start is called before the first frame update
