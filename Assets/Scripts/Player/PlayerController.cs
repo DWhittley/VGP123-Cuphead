@@ -65,11 +65,11 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator JumpForceChange()
     {
-        jumpForce *= 2;
+        jumpForce *= 1.5f;
 
         yield return new WaitForSeconds(5.0f);
 
-        jumpForce /= 2;
+        jumpForce /= 1.5f;
         jumpForceChange = null;
     }
 
