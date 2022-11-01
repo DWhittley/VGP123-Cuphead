@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         {
             StopCoroutine(jumpForceChange);
             jumpForceChange = null;
-            jumpForce /= 2;
+            jumpForce /= 1.5f;
             jumpForceChange = StartCoroutine(JumpForceChange());
 
         }
