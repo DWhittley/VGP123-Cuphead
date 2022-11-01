@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+//private void OnCollisionEnter2D(Collision2D collision);
 
 public class Projectile : MonoBehaviour
 {
@@ -19,5 +21,12 @@ public class Projectile : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
         Destroy(gameObject, lifetime);
     }
-   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+            Destroy(gameOjbect);
+            Destroy(collision.gameObject); 
+    }
 }
+
+
