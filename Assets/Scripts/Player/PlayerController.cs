@@ -24,28 +24,7 @@ public class PlayerController : MonoBehaviour
 
     // variables
     Coroutine jumpForceChange;
-    public int maxLives = 3;
-    private int _lives = 3;
-    
-    public int lives
-    {
-        get { return _lives; }
-        set
-        {
-            //if (_lives < value)
-                // we lost a life - we should respawn
 
-            _lives = value;
-
-            if (_lives > maxLives)
-                _lives = maxLives;
-
-            //if (_lives <= 0)
-            //gameover code goes here
-
-            Debug.Log("Lives have been set to: " + _lives.ToString());
-        }
-    }
 
     public void StartJumpForceChange()
     {
@@ -110,7 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         AnimatorClipInfo[] curPlayingClip = anim.GetCurrentAnimatorClipInfo(0);
         float hInput = Input.GetAxisRaw("Horizontal");
-
+         
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
 
         if (curPlayingClip.Length > 0)
@@ -159,4 +138,17 @@ public class PlayerController : MonoBehaviour
         rb.gravityScale = 5;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Squish"))
+        {
+            collision.gameObject.GetComponent<EnemyTurret>().Squish();
+
+            rb.velocity = Vector2.zero;
+            rb.AddForce(Vector2.up * jumpForce);
+        }
+
+        if (collision.CompareTag("Checkpoint"))
+            GameManager.instance.currentLevel.UpdateCheckpoint(collision.gameObject.transform);
+    }
 }

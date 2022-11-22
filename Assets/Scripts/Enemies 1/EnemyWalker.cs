@@ -9,6 +9,8 @@ public class EnemyWalker : Enemy
     public float speed;
     public Transform groundCheck;
     public float groundCheckRadius;
+    public LayerMask isGroundLayer;
+    public bool isGrounded;
 
     // Start is called before the first frame update
     public override void Start()
@@ -25,6 +27,8 @@ public class EnemyWalker : Enemy
     {
         AnimatorClipInfo[] curClips = anim.GetCurrentAnimatorClipInfo(0);
 
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
+
         if (curClips[0].clip.name == "Idle")
         {
             if (sr.flipX)
@@ -36,6 +40,8 @@ public class EnemyWalker : Enemy
                 rb.velocity = new Vector2(speed, rb.velocity.y);
             }
         }
+
+        anim.SetBool("isGrounded", isGrounded);
 
         if (!groundCheck) // need this to trigger Walk animation when enemy lands from floating in
         {
@@ -56,7 +62,10 @@ public class EnemyWalker : Enemy
         {
             sr.flipX = !sr.flipX;
         }
+        if (collision.CompareTag("PlayerProjectile"))
+            Destroy(gameObject);
     }
+
     public void DestroyMyself()
     {
         Destroy(gameObject.transform.parent.gameObject);
