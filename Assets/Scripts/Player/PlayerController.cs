@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Squish"))
         {
-            collision.gameObject.GetComponent<EnemyTurret>().Squish();
+            collision.gameObject.GetComponentInParent<EnemyTurret>().Squish();
 
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * jumpForce);

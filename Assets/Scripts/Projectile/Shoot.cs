@@ -13,8 +13,6 @@ public class Shoot : MonoBehaviour
 
     public Projectile projectilePrefab;
 
-    //public delegate void ProjectileSpawn();
-    //public event ProjectileSpawn OnProjectileSpawned;
     public UnityEvent OnProjectileSpawned;
 
 

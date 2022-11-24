@@ -29,15 +29,15 @@ public class EnemyWalker : Enemy
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
 
-        if (curClips[0].clip.name == "Idle")
+        if (curClips[0].clip.name == "Walk")
         {
             if (sr.flipX)
             {
-                rb.velocity = new Vector2(-speed, rb.velocity.y);
+                rb.velocity = new Vector2(speed, rb.velocity.y);
             }
             else
             {
-                rb.velocity = new Vector2(speed, rb.velocity.y);
+                rb.velocity = new Vector2(-speed, rb.velocity.y);
             }
         }
 
@@ -62,6 +62,12 @@ public class EnemyWalker : Enemy
         {
             sr.flipX = !sr.flipX;
         }
+        
+        if (collision.CompareTag("Enemy"))
+        {
+            sr.flipX = !sr.flipX;
+        }
+
         if (collision.CompareTag("PlayerProjectile"))
             Destroy(gameObject);
     }

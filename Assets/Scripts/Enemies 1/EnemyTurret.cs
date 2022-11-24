@@ -23,7 +23,7 @@ public class EnemyTurret : Enemy
 
     public void Squish()
     {
-        
+        anim.SetTrigger("Squish");
     }
 
     // Update is called once per frame
@@ -45,5 +45,10 @@ public class EnemyTurret : Enemy
     void UpdateTimeSinceLastFire()
     {
         timeSinceLastFire = Time.time;
+    }
+
+    public void DestroyMyself()
+    {
+        Destroy(gameObject.transform.parent.gameObject);
     }
 }
