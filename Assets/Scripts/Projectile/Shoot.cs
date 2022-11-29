@@ -30,15 +30,32 @@ public class Shoot : MonoBehaviour
 
     public void Fire()
     {
-        if (!sr.flipX)
+        if (gameObject.CompareTag("Player"))
         {
-            Projectile curProjectile = Instantiate(projectilePrefab, spawnPointRight.position, spawnPointRight.rotation);
-            curProjectile.speed = projectileSpeed;
+            if (!sr.flipX)
+            {
+                Projectile curProjectile = Instantiate(projectilePrefab, spawnPointRight.position, spawnPointRight.rotation);
+                curProjectile.speed = projectileSpeed;
+            }
+            else
+            {
+                Projectile curProjectile = Instantiate(projectilePrefab, spawnPointRight.position, spawnPointRight.rotation);
+                curProjectile.speed = -projectileSpeed;
+            }
         }
+
         else
         {
-            Projectile curProjectile = Instantiate(projectilePrefab, spawnPointRight.position, spawnPointRight.rotation);
-            curProjectile.speed = -projectileSpeed;
+            if (sr.flipX)
+            {
+                Projectile curProjectile = Instantiate(projectilePrefab, spawnPointRight.position, spawnPointRight.rotation);
+                curProjectile.speed = projectileSpeed;
+            }
+            else
+            {
+                Projectile curProjectile = Instantiate(projectilePrefab, spawnPointRight.position, spawnPointRight.rotation);
+                curProjectile.speed = -projectileSpeed;
+            }
         }
 
         OnProjectileSpawned?.Invoke();

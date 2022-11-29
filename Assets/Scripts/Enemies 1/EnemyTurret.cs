@@ -7,7 +7,9 @@ public class EnemyTurret : Enemy
     public float projectileFireRate;
     float timeSinceLastFire;
     Shoot shootScript;
-    
+    public float distThreshold = 5;
+
+
     public override void Start()
     {
         base.Start();  
@@ -30,10 +32,11 @@ public class EnemyTurret : Enemy
     void Update()
     {
         AnimatorClipInfo[] currentClips = anim.GetCurrentAnimatorClipInfo(0);
+        float distance = Vector2.Distance(GameManager.instance.playerInstance.transform.position, transform.position);
 
         if (currentClips[0].clip.name != "Fire")
         {
-            if (Time.time >= timeSinceLastFire + projectileFireRate)
+            if (Time.time >= timeSinceLastFire + projectileFireRate && distance < distThreshold)
             {
                 anim.SetTrigger("Fire");
                 timeSinceLastFire = Time.time;

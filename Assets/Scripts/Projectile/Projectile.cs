@@ -17,9 +17,12 @@ public class Projectile : MonoBehaviour
     {
         if (lifetime <= 0)
             lifetime = 2.0f;
+        
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
         Destroy(gameObject, lifetime);
+      
+ 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -36,14 +39,11 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        else
+        if (gameObject.CompareTag("EnemyProjectile") && collision.gameObject.CompareTag("Player"))
         {
-            if (collision.gameObject.CompareTag("Player"))
-            {
-                GameManager.instance.lives--;
-            }
+            GameManager.instance.lives--;
+            Destroy(gameObject);
         } 
-
     }
 }
 
