@@ -966,6 +966,7 @@ MonoBehaviour:
   mainMenu: {fileID: 1005587026}
   settingsMenu: {fileID: 213896002}
   pauseMenu: {fileID: 0}
+  gameOverMenu: {fileID: 0}
   livesText: {fileID: 0}
   volSliderText: {fileID: 2020228288}
   volSlider: {fileID: 1566278502}
@@ -1128,7 +1129,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005587026}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

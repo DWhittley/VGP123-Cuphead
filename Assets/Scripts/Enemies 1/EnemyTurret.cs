@@ -33,6 +33,12 @@ public class EnemyTurret : Enemy
     {
         AnimatorClipInfo[] currentClips = anim.GetCurrentAnimatorClipInfo(0);
         float distance = Vector2.Distance(GameManager.instance.playerInstance.transform.position, transform.position);
+        float playerX = GameManager.instance.playerInstance.transform.position.x;
+
+        if (playerX < transform.position.x && sr.flipX)
+            sr.flipX = false;
+        if (playerX > transform.position.x && !sr.flipX)
+            sr.flipX = true;
 
         if (currentClips[0].clip.name != "Fire")
         {
@@ -43,7 +49,6 @@ public class EnemyTurret : Enemy
             }
         }
     }
-
 
     void UpdateTimeSinceLastFire()
     {

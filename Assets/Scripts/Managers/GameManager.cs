@@ -66,10 +66,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
         if (Input.GetKeyDown(KeyCode.K))
             lives--;
     }
+
     public void SpawnPlayer(Transform spawnPoint)
     {
         playerInstance = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);

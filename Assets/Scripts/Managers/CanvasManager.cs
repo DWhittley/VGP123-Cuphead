@@ -29,6 +29,7 @@ public class CanvasManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Level");
+        Time.timeScale = 1;
     }
 
     void ShowSettingsMenu()
@@ -78,6 +79,8 @@ public class CanvasManager : MonoBehaviour
 
     void GameOver()
     {
+        Time.timeScale = 0;
+        SceneManager.LoadScene("GameOver");
         mainMenu.SetActive(false);
         settingsMenu.SetActive(false);
         gameOverMenu.SetActive(true);
@@ -120,30 +123,13 @@ public class CanvasManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (pauseMenu)
         {
-            if (!pauseMenu)
+            if (Input.GetKeyDown(KeyCode.P))
             {
-                pauseMenu.SetActive(true);
+                pauseMenu.SetActive(!pauseMenu.activeSelf);
                 PauseGame();
             }
-            if (pauseMenu)
-            {
-                pauseMenu.SetActive(false);
-                ResumeGame();
-            }
-                
-
-            //pauseMenu.SetActive(!pauseMenu.activeSelf);
-
-            //if (pauseMenu.activeSelf)
-            //{
-            //    PauseGame();
-            //}
-            //if (pauseMenu.activeSelf)
-            //{
-            //    ResumeGame();
-            //}
         }
         
     }
