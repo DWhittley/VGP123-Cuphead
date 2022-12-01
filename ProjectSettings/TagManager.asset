@@ -12,6 +12,8 @@ TagManager:
   - Checkpoint
   - PlayerProjectile
   - EnemyProjectile
+  - EnemyWalker
+  - EnemyTurret
   layers:
   - Default
   - TransparentFX

@@ -62,16 +62,9 @@ public class EnemyWalker : Enemy
         {
             sr.flipX = !sr.flipX;
         }
-        
-        if (collision.CompareTag("Enemy"))
-        {
-            sr.flipX = !sr.flipX;
-        }
-
+   
         if (collision.CompareTag("PlayerProjectile"))
             Destroy(gameObject);
-
-      
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -80,6 +73,11 @@ public class EnemyWalker : Enemy
         {
             GameManager.instance.lives--;
             Destroy(gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("EnemyWalker") || collision.gameObject.CompareTag("Enemy"))
+        {
+            sr.flipX = !sr.flipX;
         }
     }
 
