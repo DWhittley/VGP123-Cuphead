@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7337882011069973942}
   - component: {fileID: 2514803660651963626}
   - component: {fileID: 4016881123494515949}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spawn Collectibles_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,9 +72,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 982727461
+  m_SortingLayer: 2
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1261453225, guid: a01b241cef555d544b1d25f9146cc8c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPickup: 2
+  pickupSound: {fileID: 8300000, guid: 9b0e0e66c1bfd9e4cb835551c51b06fc, type: 3}

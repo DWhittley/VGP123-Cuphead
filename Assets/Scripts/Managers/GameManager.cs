@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
             if (_lives > maxLives)
                 _lives = maxLives;
 
-            if (_lives < 0)
+            if (_lives <= 0)
                 Gameover();
 
             onLifeValueChanged?.Invoke(_lives);
@@ -84,6 +84,6 @@ public class GameManager : MonoBehaviour
 
     void Gameover()
     {
-        //go to gameover
+        SceneManager.LoadScene("GameOver");
     }
 }

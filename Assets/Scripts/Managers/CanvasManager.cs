@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class CanvasManager : MonoBehaviour
 {
+    public AudioMixer audioMixer;
+    //public AudioMixer sfxMixer;
+
     [Header("Button")]
     public Button startButton;
     public Button settingsButton;
@@ -21,10 +25,12 @@ public class CanvasManager : MonoBehaviour
 
     [Header("Text")]
     public Text livesText;
-    public Text volSliderText;
+    public Text musicSliderText;
+    public Text sfxSliderText;
 
     [Header("Slider")]
-    public Slider volSlider;
+    public Slider musicVolSlider;
+    public Slider sfxVolSlider;
 
     public void StartGame()
     {
@@ -50,10 +56,22 @@ public class CanvasManager : MonoBehaviour
         gameOverMenu.SetActive(false);
     }
 
-    void OnSliderValueChanged(float value)
+    void OnMusicSliderValueChanged(float value)
     {
-        if (volSliderText)
-            volSliderText.text = value.ToString();
+        if (musicSliderText)
+        {
+            musicSliderText.text = value.ToString();
+            audioMixer.SetFloat("MusicVol", value - 80);
+        }
+    }
+
+    void OnSfxSliderValueChanged(float value)
+    {
+        if (sfxSliderText)
+        {
+            sfxSliderText.text = value.ToString();
+            audioMixer.SetFloat("SFXVol", value - 80);
+        }
     }
 
     void PauseGame()
@@ -113,8 +131,22 @@ public class CanvasManager : MonoBehaviour
         if (returnToGameButton)
             returnToGameButton.onClick.AddListener(ResumeGame);
 
-        if (volSlider)
-            volSlider.onValueChanged.AddListener(OnSliderValueChanged);
+        if (musicVolSlider)
+        {
+            musicVolSlider.onValueChanged.AddListener(OnMusicSliderValueChanged);
+            float mixerValue;
+            audioMixer.GetFloat("MusicVol", out mixerValue);
+            musicVolSlider.value = mixerValue + 80;
+        }
+
+        if (sfxVolSlider)
+        {
+            sfxVolSlider.onValueChanged.AddListener(OnSfxSliderValueChanged);
+            float mixerValue;
+            audioMixer.GetFloat("SFXVol", out mixerValue);
+            musicVolSlider.value = mixerValue + 80;
+        }
+            
 
         if (livesText)
             GameManager.instance.onLifeValueChanged.AddListener(UpdateLifeText);

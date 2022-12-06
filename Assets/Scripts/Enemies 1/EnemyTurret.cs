@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class EnemyTurret : Enemy
@@ -8,7 +9,6 @@ public class EnemyTurret : Enemy
     float timeSinceLastFire;
     Shoot shootScript;
     public float distThreshold = 5;
-
 
     public override void Start()
     {
