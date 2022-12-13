@@ -8,7 +8,7 @@ using UnityEngine.Audio;
 public class CanvasManager : MonoBehaviour
 {
     public AudioMixer audioMixer;
-    //public AudioMixer sfxMixer;
+    public AudioMixer sfxMixer;
 
     [Header("Button")]
     public Button startButton;
@@ -22,6 +22,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
+    public GameObject winMenu;
 
     [Header("Text")]
     public Text livesText;
@@ -43,17 +44,19 @@ public class CanvasManager : MonoBehaviour
         mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
         gameOverMenu.SetActive(false);
+        winMenu.SetActive(false);
     }
 
-    void ShowMainMenu()
+    public void ShowMainMenu()
     {
         if (SceneManager.GetActiveScene().name == "Level")
         {
             SceneManager.LoadScene("Title");
         }
         mainMenu.SetActive(true);
-        settingsMenu.SetActive(false);
+        settingsMenu.SetActive(true);
         gameOverMenu.SetActive(false);
+        winMenu.SetActive(false);
     }
 
     void OnMusicSliderValueChanged(float value)
@@ -77,12 +80,16 @@ public class CanvasManager : MonoBehaviour
     void PauseGame()
     {
         pauseMenu.SetActive(true);
+        settingsMenu.SetActive(true);
+        winMenu.SetActive(false);
         Time.timeScale = 0;
     }
 
     void ResumeGame()
     {
         pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        winMenu.SetActive(false);
         Time.timeScale = 1;
     }
 
@@ -101,6 +108,7 @@ public class CanvasManager : MonoBehaviour
         SceneManager.LoadScene("GameOver");
         mainMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        winMenu.SetActive(false);
         gameOverMenu.SetActive(true);
     }
 
@@ -144,7 +152,7 @@ public class CanvasManager : MonoBehaviour
             sfxVolSlider.onValueChanged.AddListener(OnSfxSliderValueChanged);
             float mixerValue;
             audioMixer.GetFloat("SFXVol", out mixerValue);
-            musicVolSlider.value = mixerValue + 80;
+            sfxVolSlider.value = mixerValue + 80;
         }
             
 
@@ -162,7 +170,6 @@ public class CanvasManager : MonoBehaviour
                 pauseMenu.SetActive(!pauseMenu.activeSelf);
                 PauseGame();
             }
-        }
-        
+        }        
     }
 }

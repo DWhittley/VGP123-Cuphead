@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int maxLives = 3;
+    public int maxLives = 5;
     private int _lives = 3;
 
     public PlayerController playerPrefab;
@@ -85,5 +85,10 @@ public class GameManager : MonoBehaviour
     void Gameover()
     {
         SceneManager.LoadScene("GameOver");
+    }
+
+    public void Win()
+    {
+        SceneManager.LoadScene("Win");
     }
 }

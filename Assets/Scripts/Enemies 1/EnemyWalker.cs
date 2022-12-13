@@ -11,7 +11,6 @@ public class EnemyWalker : Enemy
     public float groundCheckRadius;
     public LayerMask isGroundLayer;
     public bool isGrounded;
-    public AudioClip deathSound;
 
     // Start is called before the first frame update
     public override void Start()
@@ -65,7 +64,6 @@ public class EnemyWalker : Enemy
         }
 
         if (collision.CompareTag("PlayerProjectile"))
-            PlayerController.gameObject("Player").GetComponent<AudioSourceManager>().PlayOneShot(deathSound); 
             Destroy(gameObject);
     }
 

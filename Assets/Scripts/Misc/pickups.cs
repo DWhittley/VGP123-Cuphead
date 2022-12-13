@@ -9,7 +9,7 @@ public class pickups : MonoBehaviour
     {
         Powerup = 0,
         Life = 1,
-        Score = 2
+        Score = 2 
     }
 
     public PickupType currentPickup;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator), typeof(SpriteRenderer))]
 
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask isGroundLayer;
     public float groundCheckRadius;
+    public bool winner = false;
 
 
     // variables
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
     //Audio Clips
     public AudioClip jumpSound;
     public AudioClip squishSound;
+    public AudioClip fireworks;
 
 
     public void StartJumpForceChange()
@@ -157,6 +160,11 @@ public class PlayerController : MonoBehaviour
 
             if (squishSound)
                 asm.PlayOneShot(squishSound, false);
+        }
+       
+        if (collision.CompareTag("PoG"))
+        {
+            SceneManager.LoadScene("Win");
         }
 
         if (collision.CompareTag("Checkpoint"))

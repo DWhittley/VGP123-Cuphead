@@ -137,6 +137,7 @@ MonoBehaviour:
   groundCheckRadius: 1
   jumpSound: {fileID: 8300000, guid: 58a3b36c2053a364d9376289c379c254, type: 3}
   squishSound: {fileID: 8300000, guid: 5ba0db6a33ec15f439a1da202e96c68e, type: 3}
+  fireworks: {fileID: 8300000, guid: 7994df4654987e8499ca488718c1fa7e, type: 3}
 --- !u!95 &2250648021592588550
 Animator:
   serializedVersion: 4
